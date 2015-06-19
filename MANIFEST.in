@@ -1,0 +1,5 @@
+include LICENSE
+include README.rst
+recursive-include plugin_noticias/static *
+recursive-include plugin_noticias/templates *
+recursive-include docs *

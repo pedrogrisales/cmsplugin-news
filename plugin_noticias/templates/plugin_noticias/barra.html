@@ -1,0 +1,47 @@
+{% load  sekizai_tags %}
+
+
+<section class="barra-agenda shadow dark">
+        
+<div class="barra-agenda-titulo">
+    <h1>Últimas noticias</h1>
+</div>
+
+    <div class="barra-agenda-lista">
+        <div id="slider-agenda">
+            <ul class="slides">
+
+            {% for noticia in lista %}
+            <li>
+            <article >
+                <div class="barra-agenda-fecha">
+                    <span class="dia">{{ noticia.fecha_publicacion|date:"d" }}</span>
+                    <span class="mes">{{ noticia.fecha_publicacion|date:"F" }}</span>
+                </div>
+                <h1><a href="{{noticia.get_absolute_url}}">{{noticia.titulo}}</a>
+                </h1>
+
+            </article>
+            </li>
+            {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% addtoblock "js" %}
+    <script type="text/javascript">
+        $(function(){
+            $('#slider-agenda').flexslider({
+                animation: "slide",                
+                controlNav: false,
+                slideshowSpeed: 5500,
+                itemWidth: 330,
+                itemMargin: 5,
+                minItems: 1,
+                maxItems: 7
+            });
+        });
+    </script>
+{% endaddtoblock %}

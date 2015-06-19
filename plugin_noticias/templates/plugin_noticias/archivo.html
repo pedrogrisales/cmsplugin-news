@@ -1,0 +1,78 @@
+{% extends "cms/base.html" %}
+{% load sekizai_tags thumbnail static %}
+
+
+{% block base_content %}
+
+<div class="header-page">
+    <div class="row">
+        <div class="large-12 columns">
+            <header>
+                <h1>ARCHIVO</h1>
+            </header>
+        </div>
+    </div>
+</div>
+
+<div class="sections">
+
+    <section class="section list-news-recent">
+    	<div class="row">
+        	<div class="small-12 medium-12 large-12 columns">
+            	<div id="container">
+        		<div class="masonry">
+    			{% for noticia in noticias %}
+				<div class="item">
+					<article class="news-recent">
+						<a href="{{noticia.get_absolute_url}}">
+
+							<img class="full-width" src='{% thumbnail noticia.imagen 370x300 %}' width="370" height="300" src="" alt="{{noticia.titulo}}" title="{{noticia.titulo}}">
+
+							<div class="content">
+								<h1>{{noticia.titulo}}</h1>
+							</div>
+
+							<div class="news-recent-data">
+								<i class="icon-time"></i>
+								<time itemprop="date" datetime="{{noticia.fecha_publicacion}}">{{noticia.fecha_publicacion}}</time>
+							</div>
+
+						</a>
+					</article>
+				</div>
+    			{% endfor %}
+        		</div>
+
+            	</div>
+        	</div> <!--end large-12-->
+    	</div> <!--end row -->
+    </section>
+
+</div>
+
+
+
+{% addtoblock "css" %}
+{% endaddtoblock %}
+
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{STATIC_URL}}vendor/masonry/dist/masonry.pkgd.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        var $container = $('#container');
+        $container.masonry({
+            'gutter': 20,
+            'itemSelector': '.item'
+        });
+    });
+</script>
+{% endaddtoblock %}
+
+
+{% endblock %}
+
+
+
+
+
