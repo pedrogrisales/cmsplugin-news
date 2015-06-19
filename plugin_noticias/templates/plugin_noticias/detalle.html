@@ -1,90 +1,32 @@
-{% extends "cms/base.html" %}
-{% load cms_tags menu_tags sekizai_tags %}
+{% load sekizai_tags %}
 {% load placeholder_tags %}
-
 {% load thumbnail %}
 
+<article> 
+  <header>    
+    <h1>{{instancia.titulo}}</h1>
+    <span>{{instancia.fecha_publicacion}}</span>
+  </header>
+  <p>{% render_placeholder instancia.detalle %}</p>
+</article>
 
-{% block base_content %}
-
-<div class="header-page">
-    <div class="row">
-        <div class="large-12 columns">
-            <header>
-                <h1>ARCHIVO</h1>
-            </header>
-        </div>
-    </div>
-</div>
-
-<div class="sections">
-
-<section class="section-news">
-	<div class="row">
-
-	<div class="large-8 columns">
-
-		<article class="detail-news">
-            <h1>{{instancia.titulo}}</h1>
-
-            <div class="date">
-                <span class="day">{{instancia.fecha_publicacion|date:"d"}}</span>
-                <span class="month">{{instancia.fecha_publicacion|date:"F"}}</span>
-            </div>
-            <div class="news-social">
-                
-            </div>
-            <figure class="image">
-                    <img rel="image_src" class="full-width border-color shadow" src='{% thumbnail instancia.imagen 655x500 upscale %}' width="655" height="500" src="" alt="{{instancia.titulo}}" title="{{instancia.titulo}}">
-            </figure>
-
-
-            <div class="content">
-                 {% render_placeholder instancia.detalle %}
-            </div>
-
-
-		</article>
-
-	</div><!-- end col-md-8 -->
-
-	<div class="large-4 columns">
-		<aside class="right-sidebar">
-
-			<h1>Últimas noticias</h1>
-			<ul class="list-news-recent">
-				{% for noticia in ultimas %}
-				<li>
-					<div class="image">
-						<img class="img-responsive" src='{% thumbnail noticia.imagen 60x60 crop=",0" upscale %}' width="60" height="60" src="" alt="{{noticia.titulo}}" title="{{noticia.titulo}}">
-					</div>
-					<a href="{{noticia.get_absolute_url}}">{{noticia.titulo}}</a>
-				</li>
-				{% endfor %}
-			</ul>
-			<a href="/archivo/" class="button success small">Más noticias</a>
-
-		</aside>
-	</div> <!-- end col-md-4 -->
-
-
-	</div> <!-- end row -->
+<section>
+  <h1>Últimas noticias</h1>
+  <ul>
+    {% for noticia in ultimas %}
+    <li>
+      <article>
+        <img src='{% thumbnail noticia.imagen 60x60 crop=",0" upscale %}' width="60" height="60" src="" alt="{{noticia.titulo}}" title="{{noticia.titulo}}">
+        <a href="{{noticia.get_absolute_url}}">{{noticia.titulo}}</a>
+      </article>          
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'archivo' %}" >Más noticias</a>
 </section>
-
-</div>
-
-
-
 
 {% addtoblock "css" %}
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
 {% endaddtoblock %}
-
-{% endblock %}
-
-
-
-
-

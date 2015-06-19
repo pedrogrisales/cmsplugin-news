@@ -1,19 +1,17 @@
 #encoding:utf-8
 
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
-from django.http import Http404
-from models import NoticiaPluginModel
 from datetime import datetime  
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  
+from django.http import Http404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import RequestContext
+from models import NoticiaPluginModel
 
 def archivo(request):
-    data = {}     
-
-    
-    data['noticias'] = NoticiaPluginModel.objects.all()
-     
+    data = {
+        'noticias' : NoticiaPluginModel.objects.all()
+    }         
     # paginator = Paginator(noticias_list, 3)
     # page = request.GET.get('page')
     # try:
