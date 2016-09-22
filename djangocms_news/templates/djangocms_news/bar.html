@@ -1,0 +1,19 @@
+{% load  sekizai_tags %}
+
+<section>
+  <h1>Últimas noticias</h1>
+  <ul>
+    {% for news in olist %}
+      <li>
+        <article >
+          <span>{{ news.fecha_publicacion }}</span>        
+          <h1><a href="{{news.get_absolute_url}}">{{news.titulo}}</a>
+          </h1>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% addtoblock "js" %}
+{% endaddtoblock %}

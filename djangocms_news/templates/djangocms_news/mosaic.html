@@ -1,0 +1,16 @@
+{% load sekizai_tags %}
+{% load thumbnail %}
+
+<ul>
+  {% for news in olist %}
+    <li>
+      <article>
+        <a href="{{news.get_absolute_url}}" data-size="{{thumbnail_size}}">
+          <img src='{% thumbnail news.image thumbnail_size crop=",0" %}' alt="{{ image.title }}"  width="270" height="160" />
+          <h1>{{news.title|truncatechars:45}}</h1>
+          <p><time itemprop="date" datetime="{{news.date_publication}}">{{news.date_publication|date:'F d, Y'|capfirst}}</time></p>
+        </a>
+      </article>
+    </li>
+  {% endfor %}
+</ul>

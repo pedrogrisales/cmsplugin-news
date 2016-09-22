@@ -1,5 +1,6 @@
 import os
 from setuptools import setup
+from djangocms_news import __version__
 
 with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
@@ -8,21 +9,26 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='cmsplugin-news',
-    version='0.1',
-    packages=['plugin_noticias'],
+    name='djangocms-news',
+    version=__version__,
+    packages=['djangocms_news'],
     include_package_data=True,
     license='BSD License',
-    description='Django-cms plugin for news',
+    description='Djangocms plugin for news',
     long_description=README,
     url='',
     author='Pedro Grisales',
     author_email='grial313@gmail.com',
+    install_requires=[
+        "django>=1.8.0, <1.10",
+        "django-cms>=3.0",
+        "djangocms-text-ckeditor>=3.0"
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Develop',
-        'License :: OSI Approved :: BSD License', 
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         # Replace these appropriately if you are stuck on Python 2.

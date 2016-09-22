@@ -1,5 +1,6 @@
 include LICENSE
 include README.rst
-recursive-include plugin_noticias/static *
-recursive-include plugin_noticias/templates *
+recursive-include djangocms_news/static *
+recursive-include djangocms_news/templates *
+recursive-include djangocms_news/migrations *
 recursive-include docs *

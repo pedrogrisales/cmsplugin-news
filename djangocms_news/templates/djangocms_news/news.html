@@ -1,0 +1,26 @@
+{% load sekizai_tags %}
+{% load thumbnail %}
+{% load static %}
+
+<section>
+	<h1>News</h1>
+	<ul>
+	{% for new in news %}
+		<li>
+			<article>
+				<a href="{{new.get_absolute_url}}">
+					<img src='{% thumbnail new.imagen 370x300 %}' width="370" height="300" src="" alt="{{new.title}}" title="{{new.title}}">
+					<h1>{{new.title}}</h1>
+					<span>{{new.date_publication}}</span>
+				</a>
+			</article>
+		</li>
+	{% endfor %}
+	</ul>
+</section>
+
+{% addtoblock "css" %}
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}

@@ -1,0 +1,32 @@
+{% load sekizai_tags %}
+{% load cms_tags %}
+{% load thumbnail %}
+
+<article>
+  <header>
+    <h1>{{instance.title}}</h1>
+    <span>{{instance.date_publication}}</span>
+  </header>
+  <p>{% render_placeholder instance.news_detail %}</p>
+</article>
+
+<section>
+  <h1>Últimas noticias</h1>
+  <ul>
+    {% for news in lates %}
+    <li>
+      <article>
+        <img src='{% thumbnail news.imagen 60x60 crop=",0" upscale %}' width="60" height="60" src="" alt="{{news.title}}" title="{{news.title}}">
+        <a href="{{news.get_absolute_url}}">{{news.title}}</a>
+      </article>
+    </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'news' %}" >Más noticias</a>
+</section>
+
+{% addtoblock "css" %}
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
